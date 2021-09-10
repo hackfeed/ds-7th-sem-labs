@@ -26,7 +26,18 @@ func main() {
 		os.Exit(1)
 	}
 
-	cmd := exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat.exe", "internal/cat/main.go")
+	cmd := exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat_osx.exe", "internal/cat/main.go")
+	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, "GOOS=darwin")
+	err = cmd.Run()
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	cmd = exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat_linux.exe", "internal/cat/main.go")
+	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, "GOOS=linux")
 	err = cmd.Run()
 	if err != nil {
 		fmt.Println(err)
