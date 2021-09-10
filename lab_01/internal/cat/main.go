@@ -12,7 +12,6 @@ import (
 var LicenseKey string
 
 func main() {
-	fmt.Println(LicenseKey)
 	isLicensed, err := sys.CheckKey(LicenseKey)
 	if err != nil {
 		fmt.Println("Error:", err)
