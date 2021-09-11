@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/hackfeed/ds-7th-sem-labs/lab_01/internal/sys"
+	"github.com/hackfeed/ds-7th-sem-labs/lab_01/pkg/sys"
 	"github.com/logrusorgru/aurora/v3"
 )
 
@@ -14,7 +14,7 @@ var LicenseKey string
 func main() {
 	isLicensed, err := sys.CheckKey(LicenseKey)
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Printf("%s %s\n", aurora.BgRed("Error while checking license key:"), err)
 		os.Exit(1)
 	}
 
@@ -24,13 +24,13 @@ func main() {
 	}
 
 	if len(os.Args) < 2 {
-		fmt.Println(aurora.Green("USAGE: ./cat <file_to_read>"))
+		fmt.Println(aurora.Green("USAGE: cat_<platform>.exe <file_to_read>"))
 		os.Exit(1)
 	}
 
 	f, err := os.Open(os.Args[1])
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Printf("%s %s\n", aurora.BgRed("Error while opening given file:"), err)
 		os.Exit(1)
 	}
 	io.Copy(os.Stdout, f)
