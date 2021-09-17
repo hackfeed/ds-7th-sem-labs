@@ -1,17 +1,19 @@
 package sys
 
 import (
-	"github.com/shirou/gopsutil/host"
+	"os/exec"
+	"strings"
 )
 
 // GetKey is used to get unique host key.
 func GetKey() (string, error) {
-	key, err := host.HostID()
+	cmd := "ioreg -d2 -c IOPlatformExpertDevice | awk -F\\\" '/IOPlatformUUID/{print $(NF-1)}'"
+	out, err := exec.Command("bash", "-c", cmd).Output()
 	if err != nil {
 		return "", err
 	}
 
-	return key, nil
+	return strings.TrimSpace(string(out)), nil
 }
 
 // CheckKey is used to compare given key with host key.

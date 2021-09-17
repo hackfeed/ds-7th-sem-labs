@@ -26,21 +26,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	cmd := exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat_osx.exe", "cmd/cat/main.go")
-	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, "GOOS=darwin")
+	cmd := exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat_arm64.exe", "cmd/cat/main.go")
+	cmd.Env = append(os.Environ(), "GOARCH=arm64")
 	err = cmd.Run()
 	if err != nil {
-		fmt.Printf("%s %s\n", aurora.BgRed("Error while building OSX executable:"), err)
+		fmt.Printf("%s %s\n", aurora.BgRed("Error while building ARM executable:"), err)
 		os.Exit(1)
 	}
 
-	cmd = exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat_linux.exe", "cmd/cat/main.go")
-	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, "GOOS=linux")
+	cmd = exec.Command("go", "build", "-ldflags", fmt.Sprintf("-X main.LicenseKey=%s", key), "-o", "build/cat_amd64.exe", "cmd/cat/main.go")
+	cmd.Env = append(os.Environ(), "GOARCH=amd64")
 	err = cmd.Run()
 	if err != nil {
-		fmt.Printf("%s %s\n", aurora.BgRed("Error while building Linux executable:"), err)
+		fmt.Printf("%s %s\n", aurora.BgRed("Error while building x86 executable:"), err)
 		os.Exit(1)
 	}
 
