@@ -30,7 +30,7 @@ func fillRotor(seed int64) []byte {
 }
 
 func (r *Rotor) Rotate() {
-	r.Values = append([]byte{r.Values[math.MaxUint8]}, r.Values[1:]...)
+	r.Values = append([]byte{r.Values[math.MaxUint8]}, r.Values[:math.MaxUint8]...)
 	r.Rotations++
 	if r.Rotations == len(r.Values) {
 		r.Rotations = 0
