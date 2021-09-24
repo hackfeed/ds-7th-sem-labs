@@ -50,5 +50,6 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	fmt.Println(bytes.Compare(data, decoded))
+	isEqual := bytes.Equal(data, decoded)
+	fmt.Printf("Input and decoded files are equal: %t\n", isEqual)
 }
