@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/hackfeed/ds-7th-sem-labs/lab_03/pkg/digsig"
+	"github.com/hackfeed/ds-7th-sem-labs/lab_05/pkg/digsig"
 )
 
 var (
