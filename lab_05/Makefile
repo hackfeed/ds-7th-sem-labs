@@ -15,4 +15,4 @@ keys:
 	$(GOBUILD) -o build/keys.exe cmd/keys/main.go
 
 clean:
-	rm -rf build/*.exe
+	rm -rf build/*.exe *.pem *.sig
