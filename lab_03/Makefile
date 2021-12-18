@@ -5,4 +5,4 @@ install:
 	$(GOBUILD) -o build/des.exe cmd/des/main.go
 
 clean:
-	rm -rf build/*.exe *.pem *.sig
+	rm -rf build/*.exe
